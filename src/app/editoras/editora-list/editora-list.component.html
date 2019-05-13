@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <thead>
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Nome da Editora</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let editoraTabela of editoras">
+              <a [routerLink]="[editoraTabela.idEditora]">
+                  <td>{{editoraTabela.idEditora}}</td>
+              </a>
+              <td>{{editoraTabela.nome}}</td>	
+             
+          </tr>
+      </tbody>		
+</table>

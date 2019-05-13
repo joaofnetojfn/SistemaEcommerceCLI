@@ -1,0 +1,17 @@
+<table class="table table-hover">
+  <thead>
+          <tr>
+              <th>C&oacute;digo</th>
+              <th>Descri&ccedil;ao</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let categoriaTabela of categorias">
+              <a [routerLink]="[categoriaTabela.idCategoria]">
+                  <td>{{categoriaTabela.idCategoria}}</td>
+              </a>
+              <td>{{categoriaTabela.descricao}}</td>	
+             
+          </tr>
+      </tbody>		
+</table>
