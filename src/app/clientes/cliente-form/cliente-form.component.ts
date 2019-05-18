@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from './../clientes.service';
 import { Cliente } from './../cliente';
 import { removeSummaryDuplicates } from '@angular/compiler';
@@ -12,12 +12,13 @@ import { removeSummaryDuplicates } from '@angular/compiler';
 })
 export class ClienteFormComponent implements OnInit {
 
+
   private clienteIndex: number;
   private isNew: boolean = true;
   private cliente: Cliente;
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private clienteService: ClientesService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private clienteService: ClientesService) { } 
 
   ngOnInit() {
     this.novo();
@@ -44,24 +45,36 @@ export class ClienteFormComponent implements OnInit {
       result = this.clienteService.update(this.cliente);
     }
     this.novo();
+    this.voltar();
     result.subscribe(data => alert('Sucesso '+ data), 
     err => { 
       alert("An error occurred. "+ err);
     });
   }
 
-  /*excluir(){
+  cancelar(){
+    this.voltar();
+  }
+  voltar(){
+    this.router.navigate(['/clientes']);
+  }
+
+
+  excluir(){
     if(this.cliente.codigo == null){
       alert("Selecione algum cliente");
     } else {
-      if(confirm("Você relamente quer excluir o cliente"+ this.cliente.nome + "?")
+      if(confirm("Você relamente quer excluir o cliente"+ this.cliente.nome + "?")){ //onde fecha o parentese do if
       this.clienteService.remove(this.cliente.codigo)
       .subscribe(
-        data => this.nome,
+        data => alert('Cliente removido'+data),
         err => {
           alert("CLiente não removido.");
         });
+        this.novo();
+        this.voltar();
+      }
     }
-  }*/
+  }
 
 }

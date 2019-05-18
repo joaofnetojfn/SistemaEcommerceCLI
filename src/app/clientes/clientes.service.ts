@@ -14,7 +14,7 @@ export class ClientesService {
 
   private url: string = 'http://localhost:9000/clientes';
 
-  clienstesChanged = new EventEmitter<Observable<Cliente[]>>();// ?
+  clienstesChanged = new EventEmitter<Observable<Cliente[]>>();
 
   constructor (private http: Http) { }
 
@@ -28,6 +28,14 @@ export class ClientesService {
     return this.http.post(this.url,JSON.stringify(cliente), 
     {headers: this.getHeaderes()})
     //.map(res => res.json().data)
+    .do(data => this.clienstesChanged.emit(this.getAll()))
+    .catch(this.handleError);
+  }
+  
+  remove(id: Number) {
+    return this.http.delete(this.url+"/"+id, //passo um number, mas a funcao retorna uma string vito que o delete espera passar como argumento uma String e options
+    {headers: this.getHeaderes()})
+    .map(res => res.json().data)
     .do(data => this.clienstesChanged.emit(this.getAll()))
     .catch(this.handleError);
   }
@@ -45,15 +53,15 @@ export class ClientesService {
     .catch(this.handleError);
   }
 
-  public getHeaderes(){
+  private getHeaderes(){
     let headers = new Headers ();
     headers.append('Content-Type','application/Json');
     return headers;
   }
 
-  private getUrl(id: number){
-    return '${this.url}/${id}';
-  }
+  /*private getUrl(id: number){
+    return "${this.url}/${id}";
+  }*/
 
   private handleError(error: any){
     let erro = error.message || 'Server error';
