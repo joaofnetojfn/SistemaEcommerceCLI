@@ -32,10 +32,10 @@ export class ClientesService {
     .catch(this.handleError);
   }
   
-  remove(id: Number) {
-    return this.http.delete(this.url+"/"+id, //passo um number, mas a funcao retorna uma string vito que o delete espera passar como argumento uma String e options
+  remove(id: number) {
+    return this.http.delete(this.getUrl(id), //passo um number, mas a funcao retorna uma string vito que o delete espera passar como argumento uma String e options
     {headers: this.getHeaderes()})
-    .map(res => res.json().data)
+    //.map(res => res.json().data)
     .do(data => this.clienstesChanged.emit(this.getAll()))
     .catch(this.handleError);
   }
@@ -59,9 +59,9 @@ export class ClientesService {
     return headers;
   }
 
-  /*private getUrl(id: number){
-    return "${this.url}/${id}";
-  }*/
+  private getUrl(id: number){
+    return `${this.url}/${id}`;
+  }
 
   private handleError(error: any){
     let erro = error.message || 'Server error';

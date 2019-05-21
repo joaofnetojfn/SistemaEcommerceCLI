@@ -1,3 +1,4 @@
+import { stringify } from 'querystring';
 import { ClientesService } from './../clientes.service';
 import { Cliente } from './../cliente';
 import { Component, OnInit } from '@angular/core';
@@ -16,6 +17,9 @@ export class ClienteListComponent implements OnInit {
     this.clienteService.getAll().subscribe(data => this.clientes = data, err => {
       alert('Aconteceu um erro!');
     });
+    this.clienteService.clienstesChanged.subscribe(
+      (observable: any) => observable.subscribe( data => this.clientes = data)
+    );
   }
 
 
