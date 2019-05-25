@@ -16,6 +16,9 @@ export class EditoraListComponent implements OnInit {
     this.editoraService.getAll().subscribe(data => this.editoras = data, err => {
       alert('Aconteceu um erro!');
     });
+    this.editoraService.editorasChanged.subscribe(
+      (observable: any) => observable.subscribe( data => { this.editoras = data })
+    );
   }
 
 }

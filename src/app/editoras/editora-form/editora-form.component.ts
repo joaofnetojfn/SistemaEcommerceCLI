@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClientesService } from './../clientes.service';
-import { Cliente } from './../cliente';
+import { EditorasService } from './../editoras.service';
+import { Editora } from './../editora';
 import { removeSummaryDuplicates } from '@angular/compiler';
 
 @Component({
-  selector: 'app-cliente-form',
-  templateUrl: './cliente-form.component.html',
-  styleUrls: ['./cliente-form.component.css']
+  selector: 'app-editora-form',
+  templateUrl: './editora-form.component.html',
+  styleUrls: ['./editora-form.component.css']
 })
-export class ClienteFormComponent implements OnInit {
+export class EditoraFormComponent implements OnInit {
 
-
-  private clienteIndex: number;
+ 
+  private editoraIndex: number;
   private isNew: boolean = true;
-  private cliente: Cliente;
+  private editora: Editora;
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private router: Router, private clienteService: ClientesService) { } 
+  constructor(private route: ActivatedRoute, private router: Router, private editoraService: EditorasService) { } 
 
   ngOnInit() {
     this.novo();
@@ -26,8 +26,8 @@ export class ClienteFormComponent implements OnInit {
       (params: any) => {
         if(params.hasOwnProperty('id')){
           this.isNew = false;
-          this.clienteIndex = params['id'];
-          this.clienteService.get(this.clienteIndex).subscribe(data => this.cliente = data);
+          this.editoraIndex = params['id'];
+          this.editoraService.get(this.editoraIndex).subscribe(data => this.editora = data);
         }else {
           this.isNew = true;
         }
@@ -35,14 +35,14 @@ export class ClienteFormComponent implements OnInit {
     );
   }
   novo(){
-    this.cliente = new Cliente();
+    this.editora = new Editora();
   }
   salvar(){
     let result;
     if(this.isNew){
-      result = this.clienteService.add(this.cliente);
+      result = this.editoraService.add(this.editora);
     }else {
-      result = this.clienteService.update(this.cliente);
+      result = this.editoraService.update(this.editora);
     }
     this.novo();
     this.voltar();
@@ -56,16 +56,16 @@ export class ClienteFormComponent implements OnInit {
     this.voltar();
   }
   voltar(){
-    this.router.navigate(['/clientes']);
+    this.router.navigate(['/editoras']);
   }
 
 
   excluir(){
-    if(this.cliente.codigo == null){
+    if(this.editora.idEditora == null){
       alert("Selecione algum cliente");
     } else {
-      if(confirm("Você relamente quer excluir o cliente"+ this.cliente.nome + "?")){ 
-      this.clienteService.remove(this.cliente.codigo)
+      if(confirm("Você relamente quer excluir o cliente"+ this.editora.nome + "?")){ 
+      this.editoraService.remove(this.editora.idEditora)
       .subscribe(
         data => alert('Cliente removido'+data),
         err => {

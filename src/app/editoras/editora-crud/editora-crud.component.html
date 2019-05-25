@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+<div class="card border-secondary mb-3">
+	<div class="card-header">Cadastro de Editora</div>
+</div>
+
+<ul class="nav nav-tabs" id="editoraTab" role="tablist">
+	<li class="nav-item">
+		<a class="nav-link active" id="cadastro-tab" data-toggle="tab" href="#cadastro" role="tab" aria-controls="tabCadastro" aria-selected="true">Cadastro</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" id="dados-tab" data-toggle="tab" href="#dados" role="tab" aria-controls="tabDados" aria-selected="false">Dados</a>
+	</li>
+</ul>
+
+<div class="tab-content" id="editoraTabContent">
+	<div class="tab-pane fade show active" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+		<app-editora-form></app-editora-form>
+	</div>
+	<div class="tab-pane fade" id="dados" role="tabDados" aria-labelledby="dados-tab">
+		<div role="tabpanel" class="tab-pane" id="dados">
+			<app-editora-list></app-editora-list>
+		</div>
+	</div>
+</div>

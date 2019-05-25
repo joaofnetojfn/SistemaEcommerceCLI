@@ -33,7 +33,7 @@ export class ClientesService {
   }
   
   remove(id: number) {
-    return this.http.delete(this.getUrl(id), //passo um number, mas a funcao retorna uma string vito que o delete espera passar como argumento uma String e options
+    return this.http.delete(this.getUrl(id), 
     {headers: this.getHeaderes()})
     //.map(res => res.json().data)
     .do(data => this.clienstesChanged.emit(this.getAll()))
@@ -60,7 +60,8 @@ export class ClientesService {
   }
 
   private getUrl(id: number){
-    return `${this.url}/${id}`;
+    let url = `${this.url}/${id}`;
+    return url;
   }
 
   private handleError(error: any){
