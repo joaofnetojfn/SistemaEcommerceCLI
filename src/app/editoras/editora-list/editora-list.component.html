@@ -7,8 +7,8 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let editoraTabela of editoras">
-              <a [routerLink]="[editoraTabela.idEditora | filter:searchText]">
+          <tr *ngFor="let editoraTabela of editoras | filter:searchText">
+              <a [routerLink]="[editoraTabela.idEditora]">
                   <td>{{editoraTabela.idEditora}}</td>
               </a>
               <td>{{editoraTabela.nome}}</td>	
