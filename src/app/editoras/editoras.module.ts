@@ -1,4 +1,3 @@
-
 import { FilterPipe } from './editora-list/filter.pipe';
 import { EditorasService } from './editoras.service';
 import { FormsModule } from '@angular/forms';

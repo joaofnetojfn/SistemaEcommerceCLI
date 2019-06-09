@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { CategoriasService } from './categoria.service';
+import { CategoriasService } from './categorias.service';
 
 describe('CategoriaService', () => {
   beforeEach(() => {
