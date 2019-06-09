@@ -4,36 +4,44 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-          <a class="nav-link" routerLink="home">
-            <img src="assets/img/home.png" class="img-fluid" alt="logo" width="30" height="30"> 
-            <span class="sr-only">(current)</span>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" routerLink="home">
+              <img src="assets/img/home.png" class="img-fluid" alt="logo" width="30" height="30"> 
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        <li class="nav-item dropdown" *ngIf="showNavBar">
+          <a class="nav-link dropdown-toggle" routerLink="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Cadastros
           </a>
-        </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" routerLink="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Cadastros
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="clientes">Cliente</a>
-          <a class="dropdown-item" routerLink="categorias">Categoria</a>
-          <a class="dropdown-item" routerLink="editoras">Editora</a>
-          <a class="dropdown-item" routerLink="filmes">Filme</a>
-           <!-- <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Pedido</a>-->
-        </div>
-     </li>
-     <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Relatorios
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Pedido</a>
-        </div>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="clientes">Cliente</a>
+            <a class="dropdown-item" routerLink="categorias">Categoria</a>
+            <a class="dropdown-item" routerLink="editoras">Editora</a>
+            <a class="dropdown-item" routerLink="filmes">Filme</a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Pedido</a>-->
+          </div>
       </li>
-      -->
-  </ul>
-</div>
+      <li class="nav-item active" *ngIf="!isAuth()">
+        <a class="nav-link" routerLink="signin">
+          Login
+        </a>
+      </li>
+      <li class="nav-item active" *ngIf="isAuth()">
+        <a class="nav-link" (click)="onLogout()">Lougout</a>
+      </li>
+      <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Relatorios
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Pedido</a>
+          </div>
+        </li>
+        -->
+    </ul>
+  </div>
 </nav>

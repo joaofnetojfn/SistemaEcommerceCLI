@@ -18,7 +18,7 @@ export class ClienteListComponent implements OnInit {
       alert('Aconteceu um erro!');
     });
     this.clienteService.clienstesChanged.subscribe(
-      (observable: any) => observable.subscribe( data => { alert(JSON.stringify(data)); this.clientes = data })
+      (observable: any) => observable.subscribe( data => {this.clientes = data })// alert(JSON.stringify(data)); 
     );
   }
 

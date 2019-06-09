@@ -1,0 +1,26 @@
+
+<div class="row">
+    <form [formGroup]="form" (ngSubmit)="onSignin()"> 
+      <div class="row">
+        <div class="form-group">
+          <input id="email" type="email" class="validate" formControlName="email" [class.invalid]="form.controls['email'].touched && !form.controls['email'].valid">  
+          <label for="email" data-error="Invalid email">
+            Email
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <input id="senha" type="password" class="validate" formControlName="senha" class.invalid="form.controls['senha'].touched && !form.controls['senha'].valid">
+          <label for="senha" data-error="Passord is mandatory">senha</label>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
+                Entrar
+              </button>
+        </div>
+      </div>
+    </form>
+</div>
