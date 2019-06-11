@@ -46,7 +46,7 @@ export class EditorasService {
 
   get(id: number){
     return this.getAll()
-    .map((list:any) => list.find(editora => editora.codigo == id))
+    .map((list:any) => list.find(editora => editora.idEditora == id))
     .catch(this.handleError);
   }
 

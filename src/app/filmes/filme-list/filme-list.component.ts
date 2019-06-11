@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 export class FilmeListComponent implements OnInit {
 
   constructor(private filmeService: FilmesService) { }
-
   filmes: Filme[];
   criterio: String;
 
@@ -18,6 +17,9 @@ export class FilmeListComponent implements OnInit {
     this.filmeService.getAll().subscribe(data => this.filmes = data, err=> {
       alert("Aconteceu um erro!");
     });
+    this.filmeService.filmesChanged.subscribe(
+      (observable: any) => observable.subscribe( data => {this.filmes = data })// alert(JSON.stringify(data)); 
+    );
   }
 
 }

@@ -17,7 +17,7 @@ export class CategoriaListComponent implements OnInit {
       alert('Aconteceu um erro!');
     });
     this.categoriaService.categoriasChanged.subscribe(
-      (observable: any) => observable.subscribe( data => { this.categorias = data })
+      (observable: any) => observable.subscribe( data =>this.categorias = data )
     );
   }
 

@@ -1,4 +1,4 @@
-import { FilterPipe } from './../clientes/cliente-list/filter.pipe';
+import { FilterPipe } from './../categorias/categoria-list/filter.pipe';
 import { CategoriasService } from './categorias.service';
 import { FormsModule } from '@angular/forms';
 import { CategoriaFormComponent } from './categoria-form/categoria-form.component';

@@ -1,3 +1,4 @@
+<input type="text" [(ngModel)]="searchText" class="form-control" placeholder="O que voc&ecirc; est&aacute; procurando?"/><br />
 <table class="table table-hover">
   <thead>
           <tr>
@@ -9,7 +10,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let filmeTabela of filmes">
+          <tr *ngFor="let filmeTabela of filmes | filter:searchText">
               <a [routerLink]="[filmeTabela.codigo]">
                   <td>{{filmeTabela.codigo}}</td>
               </a>
@@ -20,3 +21,6 @@
           </tr>
       </tbody>		
 </table>
+<span [hidden]="(filmes | filter: searchText).length != 0">
+    Infelizmente n&atilde;o temos o que voc&ecirc; est&aacute; procurando
+  </span>
